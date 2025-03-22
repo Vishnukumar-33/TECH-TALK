@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Talk</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ebffb5;
+        }
+        h1 {
+            font-size: 400%;
+            font-family: cursive;
+            color: #e90d0d;
+        }
+        #imageLabel {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            margin: 20px;
+            border-radius: 10px;
+        }
+        /* Reduce the size of specific images */
+        .small-img {
+            max-width: 250px;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            background-color: #008cba;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005f73;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tech Talk</h1>
+    <p id="imageLabel">Bluetooth</p> <!-- Image name below heading -->
+
+    <img id="image" src="bluetooth.jpg" alt="Bluetooth">
+
+    <br>
+
+    <button onclick="prevImage()">Previous</button>
+    <button onclick="nextImage()">Next</button>
+
+    <script>
+        const images = [
+            { src: "bluetooth.jpg", alt: "Bluetooth" },
+            { src: "wifi.jpg", alt: "WiFi" },
+            { src: "lifi.png", alt: "LiFi" },
+            { src: "cloud.png", alt: "Cloud Computing", class: "small-img" }, /* Small */
+            { src: "5g.jpg", alt: "5G Network", class: "small-img" }, /* Small */
+            { src: "iot.jpeg", alt: "Internet of Things (IoT)" },
+            { src: "led.jpg", alt: "LED Technology", class: "small-img" }, /* Small */
+            { src: "AI.jpg", alt: "Artificial Intelligence (AI)" },
+            { src: "robot.jpg", alt: "Robot", class: "small-img" }, /* Small */
+            { src: "arduino.jpg", alt: "Arduino" },
+            { src: "sensor.jpg", alt: "Sensor", class: "small-img" }
+            ];
+        let currentIndex = 0;
+
+        function updateImage() {
+            const imageElement = document.getElementById("image");
+            const labelElement = document.getElementById("imageLabel");
+
+            // Update the image source and alt text
+            imageElement.src = images[currentIndex].src;
+            imageElement.alt = images[currentIndex].alt;
+            labelElement.textContent = images[currentIndex].alt;
+
+            // Check if the image should be smaller
+            if (images[currentIndex].class === "small-img") {
+                imageElement.classList.add("small-img");
+            } else {
+                imageElement.classList.remove("small-img");
+            }
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage();
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateImage();
+        }
+    </script>
+
+</body>
+</html>
